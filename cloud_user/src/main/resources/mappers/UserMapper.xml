@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Gu.user.mapper.UserMapper">
+    <resultMap id="userMapper" type="com.Gu.entity.User">
+        <id column="id" property="Id"/>
+        <result column="username" property="userName"/>
+        <result column="address" property="address"/>
+    </resultMap>
+    <select id="getUser" resultMap="userMapper">
+        select *
+        from tb_user
+        where id = #{id}
+    </select>
+</mapper>
