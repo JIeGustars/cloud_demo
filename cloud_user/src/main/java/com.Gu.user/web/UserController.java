@@ -22,4 +22,14 @@ public class UserController {
     public String getToken(@RequestParam("userId") String userId) {
         return userService.getToken(userId);
     }
+
+    @GetMapping("/login")
+    public Boolean userLogin(@RequestParam("userId") String userId,@RequestParam("password") String password){
+        return userService.userLogin(userId,password);
+    }
+    @PostMapping("/register")
+    @ResponseBody
+    public Boolean register(User user){
+        return userService.register(user);
+    }
 }

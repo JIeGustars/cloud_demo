@@ -7,9 +7,18 @@
         <result column="username" property="userName"/>
         <result column="address" property="address"/>
     </resultMap>
-    <select id="getUser" resultMap="userMapper">
+    <insert id="register" parameterType="java.util.Map">
+        insert into user(user_id,password)
+        values (#{userId},#{Password})
+    </insert>
+    <select id="userLogin" resultMap="userMapper">
         select *
-        from tb_user
-        where id = #{id}
+        from user
+        where user_id = #{userId} and password=#{Password}
+    </select>
+    <select id="selectUser" parameterType="java.util.Map" resultMap="userMap">
+        select *
+        from user
+        where user_id=#{userId}
     </select>
 </mapper>
