@@ -4,21 +4,28 @@
 <mapper namespace="com.Gu.user.mapper.UserMapper">
     <resultMap id="userMapper" type="com.Gu.entity.User">
         <id column="id" property="Id"/>
-        <result column="username" property="userName"/>
-        <result column="address" property="address"/>
+        <result column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="password" property="userPassword"/>
+        <result column="protection" property="userProtection"/>
     </resultMap>
     <insert id="register" parameterType="java.util.Map">
-        insert into user(user_id,password)
-        values (#{userId},#{Password})
+        insert into user(user_id,password,protection,user_name)
+        values (#{userId},#{userPassword},#{userProtection},#{userName})
     </insert>
     <select id="userLogin" resultMap="userMapper">
         select *
         from user
-        where user_id = #{userId} and password=#{Password}
+        where user_id = #{userId} and password=#{password}
     </select>
-    <select id="selectUser" parameterType="java.util.Map" resultMap="userMap">
+    <select id="selectUser" parameterType="java.util.Map" resultType="com.Gu.entity.User">
         select *
         from user
         where user_id=#{userId}
+    </select>
+    <select id="getById" parameterType="java.lang.Integer" resultMap="userMapper">
+        select *
+        from user
+        where id = #{id}
     </select>
 </mapper>

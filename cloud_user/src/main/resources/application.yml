@@ -8,13 +8,20 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
   application:
     name: userserver
+  rabbitmq:
+    host: 192.168.1.111
+    port: 5762
+    username: Gu
+    password: 123
+    virtual-host: /
   cloud:
     nacos:
-      server-addr: 47.104.19.189:10086 # nacos服务地址
+      server-addr: 192.168.1.111:10086 # nacos服务地址
     sentinel:
       transport:
         dashboard: localhost:8848
       web-context-unify: false #关闭context整合,sentinel默认会给进入SpringMVC的所有请求设置同一个root资源，会导致链路模式失效。
+
 mybatis:
   type-aliases-package: com.Gu.entity
   configuration:

@@ -10,5 +10,5 @@ spring:
     name: gateway
   cloud:
     nacos:
-      server-addr: 47.104.19.189:10086 # nacos地址
+      server-addr: 192.168.1.111:10086 # nacos地址
 

@@ -1,7 +1,6 @@
 package com.Gu.feign.config;
 
-
-import com.Gu.feign.fallbacfactory.UserClientFallbackFactory;
+import com.Gu.feign.fallbacfactory.tokenClientFallbackFactory;
 import feign.Logger;
 import org.springframework.context.annotation.Bean;
 
@@ -12,7 +11,8 @@ public class DefaultFeignConfiguration {
     }
 
     @Bean
-    public UserClientFallbackFactory userClientFallbackFactory() {
-        return new UserClientFallbackFactory();
+    public tokenClientFallbackFactory tokenClientFallbackFactory() {
+        return new tokenClientFallbackFactory();
     }
+
 }

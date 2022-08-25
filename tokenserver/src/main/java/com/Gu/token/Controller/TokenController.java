@@ -1,6 +1,5 @@
 package com.Gu.token.Controller;
 
-import ch.qos.logback.core.joran.action.AppenderRefAction;
 import com.Gu.token.create.Token04Sample;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

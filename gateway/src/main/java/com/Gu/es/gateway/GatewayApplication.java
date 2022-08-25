@@ -1,4 +1,4 @@
-package com.Gu.gateway;
+package com.Gu.es.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -14,6 +14,8 @@
         <module>beans</module>
         <module>cloud_user</module>
         <module>tokenserver</module>
+        <module>ES_demo</module>
+
 
     </modules>
 

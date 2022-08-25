@@ -5,4 +5,10 @@ logging:
     com.Gu: debug
   pattern:
     dateformat: MM-dd HH:mm:ss:SSS
+spring:
+  application:
+    name: tokenserver
+  cloud:
+    nacos:
+      server-addr: 192.168.1.111:10086 # nacos地址
 
