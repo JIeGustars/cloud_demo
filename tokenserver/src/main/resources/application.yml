@@ -10,5 +10,5 @@ spring:
     name: tokenserver
   cloud:
     nacos:
-      server-addr: 192.168.1.111:10086 # nacos地址
+      server-addr: 10.31.75.228:10086 # nacos地址
 

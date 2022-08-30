@@ -1,5 +1,6 @@
 package com.Gu.user.mapper;
 
+import com.Gu.entity.MeetingDate;
 import com.Gu.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -18,4 +19,9 @@ public interface UserMapper {
     String forget(String userId, String protection);
 
     User getById(int id);
+
+
+    String getUserName(String userId);
+
+    void createMeeting(MeetingDate date);
 }

@@ -1,6 +1,8 @@
 package com.Gu.user.service;
 
+import com.Gu.entity.MeetingDate;
 import com.Gu.entity.User;
+import com.Gu.user.pojo.userWeb;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -9,15 +11,14 @@ public interface UserService {
 
     String getToken(String userId);
 
-    Boolean userLogin(String userId, String password);
+    userWeb userLogin(String userId, String password);
 
     Boolean register(User user);
 
     String forget(String userId, String protection);
 
-    String addEs();
 
     User getById(int id);
 
-    User getEs();
+    String createMeeting(MeetingDate date);
 }

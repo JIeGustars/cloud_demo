@@ -9,7 +9,14 @@
         <result column="password" property="userPassword"/>
         <result column="protection" property="userProtection"/>
     </resultMap>
-    <insert id="register" parameterType="java.util.Map">
+    <resultMap id="timeMapper" type="com.Gu.entity.MeetingDate">
+        <id column="id" property="Id"/>
+        <result column="user_id" property="userId"/>
+        <result column="meeting_id" property="meetingId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="end_time" property="endTime"/>
+    </resultMap>
+    <insert id="register" parameterType="com.Gu.entity.User">
         insert into user(user_id,password,protection,user_name)
         values (#{userId},#{userPassword},#{userProtection},#{userName})
     </insert>
@@ -28,4 +35,14 @@
         from user
         where id = #{id}
     </select>
+    <select id="getUserName" parameterType="java.util.Map" resultType="java.lang.String">
+        select user_name
+        from user
+        where user_id = #{userId}
+    </select>
+
+    <insert id="createMeeting" parameterType="com.Gu.entity.MeetingDate">
+        insert into meeting_time(user_id, meeting_id, create_time, end_time)
+        VALUES (#{userId},#{meetingId},#{createTime},#{endTime})
+    </insert>
 </mapper>

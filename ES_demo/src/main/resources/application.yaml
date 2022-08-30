@@ -1,13 +1,8 @@
 server:
   port: 8084
 spring:
-  datasource:
-    url: jdbc:mysql://192.168.1.111:3306/heima?useSSL=false
-    username: root
-    password: guwenjie03116
-    driver-class-name: com.mysql.jdbc.Driver
   rabbitmq:
-    host: 192.168.1.111
+    host: 10.31.75.228
     port: 5672
     username: Gu
     password: 123
@@ -16,7 +11,7 @@ spring:
     name: EsServer
   cloud:
     nacos:
-      server-addr: 192.168.1.111:10086 # nacos地址
+      server-addr: 10.31.75.228:10086 # nacos地址
 logging:
   level:
     com.Gu: debug
