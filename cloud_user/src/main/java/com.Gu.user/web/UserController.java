@@ -3,6 +3,7 @@ package com.Gu.user.web;
 import com.Gu.entity.MeetingDate;
 import com.Gu.entity.User;
 import com.Gu.feign.clients.esClient;
+import com.Gu.user.pojo.MeetingDemo;
 import com.Gu.user.pojo.userWeb;
 import com.Gu.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +25,6 @@ public class UserController {
 
     @Resource
     private esClient client;
-
 
     /**
      * ZeGoRtc创建token所用
@@ -80,8 +80,29 @@ public class UserController {
         return userService.forget(userId,Protection);
     }
 
+    /**
+     * 会议创建写入数据库接口
+     * @param date 会议创建所需要的类
+     * @return 返回会议号，因为其他信息前端皆有，但是会议号由后端随机生成
+     */
     @PostMapping("/create")
-    public String createMeeting(@RequestBody MeetingDate date) {
+    public MeetingDemo createMeeting(@RequestBody MeetingDate date) {
         return userService.createMeeting(date);
+    }
+
+    @GetMapping("/checkMeetingId")
+    public Boolean checkMeetingId(@RequestParam("meetingId") String meetingId) {
+        return userService.checkMeetingId(meetingId);
+    }
+
+    /**
+     * 虹软人脸识别sdk接口
+     * @param picPath1 人脸图片1
+     * @param picPath2 人脸图片2
+     * @return 返回是否识别成功
+     */
+    @PostMapping("/face")
+    public Boolean Recognition(@RequestParam("picPath1") String picPath1,@RequestParam("picPath2") String picPath2) {
+        return userService.Recognition(picPath1,picPath2);
     }
 }

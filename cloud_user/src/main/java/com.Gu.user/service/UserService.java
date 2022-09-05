@@ -2,6 +2,7 @@ package com.Gu.user.service;
 
 import com.Gu.entity.MeetingDate;
 import com.Gu.entity.User;
+import com.Gu.user.pojo.MeetingDemo;
 import com.Gu.user.pojo.userWeb;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +21,9 @@ public interface UserService {
 
     User getById(int id);
 
-    String createMeeting(MeetingDate date);
+    MeetingDemo createMeeting(MeetingDate date);
+
+    Boolean checkMeetingId(String meetingId);
+
+    Boolean Recognition(String picPath1,String picPath2);
 }

@@ -45,4 +45,10 @@
         insert into meeting_time(user_id, meeting_id, create_time, end_time)
         VALUES (#{userId},#{meetingId},#{createTime},#{endTime})
     </insert>
+
+    <select id="checkMeetingId" resultMap="timeMapper">
+        select *
+        from meeting_time
+        where meeting_id = #{meetingId}
+    </select>
 </mapper>

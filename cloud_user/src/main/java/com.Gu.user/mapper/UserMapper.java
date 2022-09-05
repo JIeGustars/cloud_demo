@@ -24,4 +24,6 @@ public interface UserMapper {
     String getUserName(String userId);
 
     void createMeeting(MeetingDate date);
+
+    List<MeetingDate> checkMeetingId(String meetingId);
 }

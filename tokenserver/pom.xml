@@ -30,6 +30,12 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
+        <!--baidu人脸识别api-->
+        <dependency>
+            <groupId>com.baidu.aip</groupId>
+            <artifactId>java-sdk</artifactId>
+            <version>4.16.7</version>
+        </dependency>
         <!--nacos的配置管理依赖-->
 <!--        <dependency>-->
 <!--            <groupId>com.alibaba.cloud</groupId>-->

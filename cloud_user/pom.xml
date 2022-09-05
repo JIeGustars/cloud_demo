@@ -40,6 +40,12 @@
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
         </dependency>
+        <!--baidu人脸识别api-->
+        <dependency>
+            <groupId>com.baidu.aip</groupId>
+            <artifactId>java-sdk</artifactId>
+            <version>4.16.7</version>
+        </dependency>
         <!-- nacos客户端依赖包 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -82,6 +88,10 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
         </dependency>
     </dependencies>
     <build>
