@@ -1,8 +1,8 @@
 server:
-  port: 8084
+  port: 8083
 spring:
   rabbitmq:
-    host: 10.31.75.228
+    host: 82.157.249.61
     port: 5672
     username: Gu
     password: 123
@@ -11,7 +11,7 @@ spring:
     name: EsServer
   cloud:
     nacos:
-      server-addr: 10.31.75.228:10086 # nacos地址
+      server-addr: 43.140.192.126:8848 # nacos地址
 logging:
   level:
     com.Gu: debug

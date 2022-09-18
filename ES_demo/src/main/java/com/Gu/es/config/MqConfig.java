@@ -1,6 +1,7 @@
 package com.Gu.es.config;
 
-import com.Gu.es.constants.MqConstants;
+
+import com.Gu.es.entity.MqConstants;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;

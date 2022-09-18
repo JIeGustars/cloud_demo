@@ -17,7 +17,7 @@ public class imgutile {
             return null;
         }
         File file = null;
-        FileOutputStream fops;
+        FileOutputStream fops = null;
         int start = base64.indexOf("/");
         int end = base64.indexOf(";");
         String ext = "." + base64.substring(start + 1, end);
@@ -34,6 +34,7 @@ public class imgutile {
         assert file != null;
         return file;
     }
+
 
 
 

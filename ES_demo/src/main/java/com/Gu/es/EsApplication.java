@@ -1,7 +1,6 @@
 package com.Gu.es;
 
 
-import com.Gu.feign.config.DefaultFeignConfiguration;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
@@ -10,8 +9,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
+/**
+ * 古文杰
+ */
 @SpringBootApplication
-@EnableFeignClients(basePackages = "com.Gu.feign.clients",defaultConfiguration = DefaultFeignConfiguration.class)
+@EnableFeignClients
 public class EsApplication {
 
     public static void main(String[] args) {
@@ -21,7 +23,7 @@ public class EsApplication {
     @Bean
     public RestHighLevelClient restHighLevelClient(){
         return new RestHighLevelClient(RestClient.builder(
-                HttpHost.create("http://10.31.75.228:9200")
+                HttpHost.create("http://82.157.249.61:9200")
         ));
     }
 }

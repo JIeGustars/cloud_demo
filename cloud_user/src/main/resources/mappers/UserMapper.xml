@@ -2,53 +2,137 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.Gu.user.mapper.UserMapper">
-    <resultMap id="userMapper" type="com.Gu.entity.User">
+    <resultMap id="userMapper" type="com.Gu.user.entity.User">
         <id column="id" property="Id"/>
         <result column="user_id" property="userId"/>
         <result column="user_name" property="userName"/>
         <result column="password" property="userPassword"/>
         <result column="protection" property="userProtection"/>
     </resultMap>
-    <resultMap id="timeMapper" type="com.Gu.entity.MeetingDate">
+
+    <resultMap id="timeMapper" type="com.Gu.user.entity.MeetingDate">
         <id column="id" property="Id"/>
         <result column="user_id" property="userId"/>
         <result column="meeting_id" property="meetingId"/>
         <result column="create_time" property="createTime"/>
         <result column="end_time" property="endTime"/>
     </resultMap>
-    <insert id="register" parameterType="com.Gu.entity.User">
+
+    <resultMap id="stateMapper" type="com.Gu.user.entity.MeetingState">
+        <id column="id" property="Id"/>
+        <result column="user_name" property="userName"/>
+        <result column="state" property="userState"/>
+        <result column="face" property="face"/>
+        <result column="phone" property="userPhone"/>
+        <result column="meeting_id" property="meetingId"/>
+    </resultMap>
+
+    <insert id="register" parameterType="com.Gu.user.entity.User">
         insert into user(user_id,password,protection,user_name)
         values (#{userId},#{userPassword},#{userProtection},#{userName})
+
     </insert>
     <select id="userLogin" resultMap="userMapper">
         select *
         from user
         where user_id = #{userId} and password=#{password}
     </select>
-    <select id="selectUser" parameterType="java.util.Map" resultType="com.Gu.entity.User">
+
+    <select id="selectUser" parameterType="java.util.Map" resultType="com.Gu.user.entity.User">
         select *
         from user
         where user_id=#{userId}
     </select>
-    <select id="getById" parameterType="java.lang.Integer" resultMap="userMapper">
+
+    <select id="getByName" parameterType="java.lang.Integer" resultMap="stateMapper">
         select *
-        from user
-        where id = #{id}
+        from meeting_state
+        where id = #{Id}
     </select>
+
     <select id="getUserName" parameterType="java.util.Map" resultType="java.lang.String">
         select user_name
         from user
         where user_id = #{userId}
     </select>
 
-    <insert id="createMeeting" parameterType="com.Gu.entity.MeetingDate">
+    <insert id="createMeeting" parameterType="com.Gu.user.entity.MeetingDate">
         insert into meeting_time(user_id, meeting_id, create_time, end_time)
         VALUES (#{userId},#{meetingId},#{createTime},#{endTime})
     </insert>
 
-    <select id="checkMeetingId" resultMap="timeMapper">
+    <select id="checkMeetingId" parameterType="java.util.Map" resultMap="stateMapper">
+        select  *
+        from meeting_state
+        where meeting_id = #{meeetingId} and phone = #{phone}
+    </select>
+
+    <insert id="addUser" parameterType="com.Gu.user.entity.MeetingState">
+        insert into meeting_state(user_name, state, face, phone, meeting_id)
+        values (#{userName},#{userState},#{face},#{userPhone},#{meetingId})
+    </insert>
+
+    <select id="count" resultType="java.lang.Integer">
+        select count(*)
+        from meeting_state
+        where meeting_id=#{meetingId}
+    </select>
+    <select id="ShowUserPage" parameterType="java.util.Map" resultMap="stateMapper">
+        select id, user_name, state, face, phone, meeting_id
+        from meeting_state
+        where meeting_id=#{meetingId}
+        limit #{pageNum},#{pageSize}
+    </select>
+    <update id="updateState" parameterType="java.util.Map">
+        update meeting_state
+        set state = "自动签到"
+        where user_name = #{userName} and meeting_id = #{meetingId}
+    </update>
+
+    <select id="getUserId" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select id
+        from meeting_state
+        where meeting_id = #{meetingId} and user_name= #{userName}
+    </select>
+    <select id="InManger" parameterType="java.lang.String" resultMap="timeMapper">
         select *
         from meeting_time
-        where meeting_id = #{meetingId}
+        where meeting_id =#{meetingId} and user_id = #{userId}
     </select>
+    <select id="getUser" parameterType="java.lang.Integer" resultMap="stateMapper">
+        select  *
+        from meeting_state
+        where id = #{Id}
+    </select>
+    <select id="ShowMeetingPage" parameterType="java.util.Map" resultMap="timeMapper">
+        select *
+        from meeting_time
+        where user_id=#{userId}
+        limit #{pageNum},#{pageSize}
+    </select>
+    <select id="total" parameterType="java.util.Map" resultType="com.Gu.user.pojo.Total">
+        select count(*) as num1,
+        ub.cb as num2,
+        uc.cc as num3
+        from meeting_state as ua,
+        (select count(*) as cb from meeting_state where state="手动签到" and meeting_id=#{meetingId}) as ub,
+        (select count(*) as cc from meeting_state where state="未签到" and meeting_id=#{meetingId}) as uc
+        where ua.state="自动签到" and meeting_id=#{meetingId};
+    </select>
+    <select id="forget" parameterType="java.lang.String" resultType="java.lang.String">
+        select password
+        from user
+        where user_id=#{userId} and protection=#{protection}
+    </select>
+    <select id="handSelect" parameterType="java.util.Map" resultMap="stateMapper">
+        select *
+        from meeting_state
+        where user_name=#{userName} and phone = #{userPhone} and meeting_id = #{meetingId}
+    </select>
+
+    <update id="hand" parameterType="java.util.Map">
+        update meeting_state
+        set state = "手动签到"
+        where user_name=#{userName} and phone = #{userPhone} and meeting_id = #{meetingId}
+    </update>
 </mapper>

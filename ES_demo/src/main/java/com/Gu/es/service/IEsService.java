@@ -1,6 +1,7 @@
 package com.Gu.es.service;
 
-import com.Gu.entity.User;
+
+import com.Gu.es.entity.MeetingState;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -8,8 +9,11 @@ import java.io.IOException;
 @Service
 public interface IEsService {
 
-    User getById(int i);
 
-    void insertById(Integer id) throws IOException;
+    void insertById(Integer Id) throws IOException;
 
+    String queryFace(String userPhone, String meetingId) throws IOException;
+
+
+    MeetingState queryUser(String meetingId, String phone) throws IOException;
 }

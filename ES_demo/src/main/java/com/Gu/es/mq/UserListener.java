@@ -1,6 +1,7 @@
 package com.Gu.es.mq;
 
-import com.Gu.es.constants.MqConstants;
+
+import com.Gu.es.entity.MqConstants;
 import com.Gu.es.service.IEsService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
@@ -16,10 +17,10 @@ public class UserListener {
 
     /**
      * 监听新增或修改的业务
-     * @param id id
+     * @param Id mysql数据库meeting_time表的id
      */
     @RabbitListener(queues = MqConstants.USER_INSERT_QUEUE)
-    public void listenUserInsertOrUpdate(Integer id) throws IOException {
-        iEsService.insertById(id);
+    public void listenUserInsertOrUpdate(Integer Id) throws IOException {
+        iEsService.insertById(Id);
     }
 }

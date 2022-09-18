@@ -1,7 +1,10 @@
 package com.Gu.user.mapper;
 
-import com.Gu.entity.MeetingDate;
-import com.Gu.entity.User;
+
+import com.Gu.user.entity.MeetingDate;
+import com.Gu.user.entity.MeetingState;
+import com.Gu.user.entity.User;
+import com.Gu.user.pojo.Total;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -18,12 +21,32 @@ public interface UserMapper {
 
     String forget(String userId, String protection);
 
-    User getById(int id);
+    MeetingState getUser(Integer Id);
 
 
     String getUserName(String userId);
 
     void createMeeting(MeetingDate date);
 
-    List<MeetingDate> checkMeetingId(String meetingId);
+    MeetingState checkMeetingId(Map<String , Object> map);
+
+    void addUser(MeetingState user);
+
+    Total total(Map<String, Object> map);
+
+    Integer count(String meetingId);
+
+    List<MeetingState> ShowUserPage(Map<String, Object> map);
+
+    void updateState(Map<String, String> map);
+
+    Integer getUserId(String meetingId, String userName);
+
+    List<MeetingDate> InManger(String meetingId, String userId);
+
+    List<MeetingDate> ShowMeetingPage(Map<String, Object> map);
+
+    MeetingState handSelect(Map<String, Object> map);
+
+    void hand(Map<String, Object> map);
 }
